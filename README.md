@@ -18,6 +18,7 @@
 	npm install knex --save
 	npm install mysql2 --save
 	npm install helmet --save
+	npm install dotenv --save
 ````
 
   ### Packages dev-dependencies
