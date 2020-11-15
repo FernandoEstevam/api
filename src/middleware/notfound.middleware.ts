@@ -3,7 +3,7 @@ import HttpException from '../exception/HttpException';
 
 const notFound = (req: Request, res: Response, next: NextFunction) => {
 
-	const erro = new HttpException(400,"Not found");
+	const erro = new HttpException(404,"Not found");
 
 	next(erro);
 
