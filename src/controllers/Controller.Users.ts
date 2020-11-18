@@ -1,8 +1,11 @@
 import { Request, Response, NextFunction } from 'express';
 
+import UserModel from '../models/Users';
+
+
 class ControllerUsers {
 	
-	index(req: Request, res: Response, next: NextFunction) {
+	async index(req: Request, res: Response, next: NextFunction) {
 
 		const { id } = req.params;
 
@@ -12,12 +15,15 @@ class ControllerUsers {
 			});
 		}
 
+		const users = await UserModel.getAll();
+
 		return res.status(200).json({
-			message: "Class ControllerUsers"
+			message: "Class ControllerUsers",
+			users: users
 		});
 	}
 
-	create(req: Request, res: Response, next: NextFunction) {
+	async create(req: Request, res: Response, next: NextFunction) {
 
 		const { login, password } = req.body;
 
@@ -25,11 +31,16 @@ class ControllerUsers {
 			return res.status(404).json({
 				message: "Informe os dados para cadastro!"
 			});
-			
 		}
+
 		
+		const data = { login, password } 
+
+		const user = await UserModel.create(data);
+
 		return res.status(201).json({
-			message: "Criado com sucesso!"
+			message: "Criado com sucesso!",
+			user: user
 		});
 		
 	}

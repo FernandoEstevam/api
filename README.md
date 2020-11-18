@@ -19,6 +19,7 @@
 	npm install mysql2 --save
 	npm install helmet --save
 	npm install dotenv --save
+	npm install bcryptjs --save
 ````
 
   ### Packages dev-dependencies

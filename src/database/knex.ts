@@ -1,9 +1,10 @@
+import Knex from 'knex';
 import path from 'path';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
-module.exports = {
+const knex = Knex({
 	client: process.env.CLIENT,
 	connection: {
 		host: process.env.HOST,
@@ -11,13 +12,6 @@ module.exports = {
 		password: process.env.DB_PASSWORD,
 		database: process.env.DB_NAME
 	},
-	
-	migrations:  {
-		directory: path.resolve(__dirname, 'src', 'database', 'migrations')
-	},
-	seeds:  {
-		directory: path.resolve(__dirname, 'src', 'database', 'seeds')
-	},
-	
-	useNullDefault: true
-}
+})
+
+export default knex;

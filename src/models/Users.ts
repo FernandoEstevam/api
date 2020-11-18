@@ -1,12 +1,28 @@
-import Config from '../database/connection';
+import knex from '../database/knex';
+
+import { IUsers } from '../types/IUsers';
 
 class Users {
 
-    private static _knex:Config;
+    private table: string = 'usuarios';
 
-    constructor() {
-        Users._knex = Config._getKnex();
+    getAll() {
+        const query = knex<IUsers>(this.table).select('*');
+
+        const users = query;
+
+        return users;
     }
 
+    create(data: IUsers) {
 
+        const query = knex<IUsers>(this.table).insert([data]);
+
+        const user = query;
+
+        return user;
+
+    }
 }
+
+export default new Users();
